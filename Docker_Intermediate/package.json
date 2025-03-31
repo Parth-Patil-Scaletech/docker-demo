@@ -1,0 +1,29 @@
+{
+  "name": "docker-intermediate",
+  "version": "1.0.0",
+  "description": "A basic NestJS application for Docker Intermediate demo",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:prod": "node dist/main.js",
+    "build": "nest build"
+  },
+  "dependencies": {
+    "@nestjs/common": "^9.0.0",
+    "@nestjs/core": "^9.0.0",
+    "@nestjs/platform-express": "^9.0.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.0.0",
+    "@nestjs/typeorm": "^9.0.0",
+    "@nestjs/config": "^2.0.0",
+    "typeorm": "^0.3.0",
+    "pg": "^8.7.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^9.0.0",
+    "@nestjs/schematics": "^9.0.0",
+    "@nestjs/testing": "^9.0.0",
+    "typescript": "^4.0.0"
+  }
+}

@@ -1,0 +1,58 @@
+  # Deprecated (Can skip with newest version)
+  # version: '3.8'
+
+  services:
+    backend: # Service name
+      # Build the Dockerfile in the current directory
+      build:
+        context: .
+        dockerfile: Dockerfile
+        target: dev # specify the target stage if needed
+      image: demo_backend
+      container_name: demo_backend
+      env_file:
+        - .env
+      ports:
+        - "3000:3000"
+      # volumes: # Connect to any local directory or a external volume
+      #   - ./:/app/
+      #   - /app/node_modules
+      healthcheck: # Healthcheck to ensure the service is running
+        test: ["CMD", "curl", "-f", "http://localhost:3000"]
+        interval: 30s
+        timeout: 30s
+        retries: 3
+        start_period: 30s
+      depends_on: # Start the services that this one depends on before 
+        - postgres
+      networks: # Connect to the docker network for inter app connections
+        - demo_net
+
+    postgres:
+      image: postgres:latest
+      container_name: postgres
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: admin@123
+        POSTGRES_DB: demo_db
+      ports:
+        - "5432:5432"
+      networks:
+        - demo_net
+
+    pgadmin:
+      image: dpage/pgadmin4:latest
+      container_name: pgadmin
+      environment:
+        PGADMIN_DEFAULT_EMAIL: admin@admin.com
+        PGADMIN_DEFAULT_PASSWORD: admin@123
+      ports:
+        - "8080:80"
+      depends_on:
+        - postgres
+      networks:
+        - demo_net
+
+  networks: # Define the network for inter-service communication
+    demo_net:
+      driver: bridge
