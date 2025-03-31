@@ -95,6 +95,7 @@ This document provides an overview of the key topics covered in both sections, a
 - [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)  
 - [Docker Compose Documentation](https://docs.docker.com/compose/)  
 - [Top Docker Best Practices](https://www.docker.com/blog/top-8-docker-best-practices/)  
+- [Detailed documentation for Docker concepts](https://docs.google.com/document/d/1UKa3CvjoMROxqrLcyKEMr3s-mer3mrbAEZdAvcn_EE0)
 
 ---
 
