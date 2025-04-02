@@ -1,0 +1,15 @@
+{
+  "files.autoSave": "afterDelay", // Automatically save files after a delay
+  "editor.fontSize": 18, // Set font size to 18
+  "editor.tabSize": 2, // Set tab size to 2 spaces
+  "editor.formatOnSave": true, // Automatically format files on save
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit" // Organize imports automatically on save
+  },
+  "files.exclude": {
+    "**/.git": true, // Hide .git folder
+    "**/node_modules": true, // Hide node_modules folder
+    "**/dist": true // Hide dist folder
+  },
+  "terminal.integrated.defaultProfile.linux": "bash", // Set default terminal to bash
+}

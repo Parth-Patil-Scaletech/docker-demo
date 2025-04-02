@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "rangav.vscode-thunder-client", // Thunder Client for API testing
+    "ms-azuretools.vscode-docker", // Docker extension for managing containers
+    "esbenp.prettier-vscode", // Prettier for code formatting
+    "dbaeumer.vscode-eslint" // ESLint for linting JavaScript/TypeScript
+  ]
+}
