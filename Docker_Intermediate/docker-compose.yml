@@ -14,9 +14,10 @@
         - .env
       ports:
         - "3000:3000"
-      # volumes: # Connect to any local directory or a external volume
-      #   - ./:/app/
-      #   - /app/node_modules
+      volumes: # Connect to any local directory or an external volume
+        - ./backend:/app/backend # Updated volume to point to the backend folder
+        - /app/backend/node_modules
+        - ./volume-data:/app/backend/volume-data
       healthcheck: # Healthcheck to ensure the service is running
         test: ["CMD", "curl", "-f", "http://localhost:3000"]
         interval: 30s
@@ -25,18 +26,22 @@
         start_period: 30s
       depends_on: # Start the services that this one depends on before 
         - postgres
-      networks: # Connect to the docker network for inter app connections
+      networks: # Connect to the docker network for inter-app connections
         - demo_net
 
     postgres:
       image: postgres:latest
       container_name: postgres
-      environment:
+      restart: unless-stopped # Restart policy
+      environment: # Set initial env variables before starting the container
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: admin@123
-        POSTGRES_DB: demo_db
+        POSTGRES_DB: demo_db # Create a database beforehand
       ports:
         - "5432:5432"
+      # Persist postgresa data by mounting a local directory so that it is not lost when the container is stopped
+      volumes:
+        - ./postgres-data:/var/lib/postgresql/data 
       networks:
         - demo_net
 
