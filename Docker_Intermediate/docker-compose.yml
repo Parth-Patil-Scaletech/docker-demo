@@ -15,9 +15,9 @@
       ports:
         - "3000:3000"
       volumes: # Connect to any local directory or an external volume
-        - ./backend:/app/backend # Updated volume to point to the backend folder
-        - /app/backend/node_modules
-        - ./volume-data:/app/backend/volume-data
+        - ./:/app/
+        - /app/node_modules
+        - ./volume-data:/app/volume-data
       healthcheck: # Healthcheck to ensure the service is running
         test: ["CMD", "curl", "-f", "http://localhost:3000"]
         interval: 30s
