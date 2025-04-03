@@ -5,19 +5,19 @@
     backend: # Service name
       # Build the Dockerfile in the current directory
       build:
-        context: .
+        context: ./backend # Specify the path to the backend directory
         dockerfile: Dockerfile
         target: dev # specify the target stage if needed
       image: demo_backend
       container_name: demo_backend
       env_file:
-        - .env
+        - ./backend/.env
       ports:
         - "3000:3000"
       volumes: # Connect to any local directory or an external volume
-        - ./:/app/
+        - ./backend/:/app/
         - /app/node_modules
-        - ./volume-data:/app/volume-data
+        - ./backend/volume-data:/app/volume-data
       healthcheck: # Healthcheck to ensure the service is running
         test: [ "CMD", "wget", "--spider", "localhost:3000"]
         interval: 10s

@@ -4,8 +4,8 @@ node_modules
 
 dist
 
-*/volume-data/*
+*/*/volume-data/*
 
-!*/volume-data/.gitkeep
+!*/*/volume-data/.gitkeep
 
 postgres-data
