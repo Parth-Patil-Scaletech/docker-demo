@@ -39,9 +39,9 @@
         POSTGRES_DB: demo_db # Create a database beforehand
       ports:
         - "5432:5432"
-      # Persist postgresa data by mounting a local directory so that it is not lost when the container is stopped
+      # Persist postgresa data by mounting a volume so that it is not lost when the container is stopped
       volumes:
-        - ./postgres-data:/var/lib/postgresql/data 
+      - pgdata:/var/lib/postgresql/data
       networks:
         - demo_net
 
@@ -61,3 +61,7 @@
   networks: # Define the network for inter-service communication
     demo_net:
       driver: bridge
+
+  volumes: # Define the volume for persisting data
+    pgdata: # Volume name
+      driver: local
