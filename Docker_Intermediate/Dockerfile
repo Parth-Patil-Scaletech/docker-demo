@@ -48,16 +48,16 @@ FROM node:20-alpine AS prod
 # Set the working directory inside the container
 WORKDIR /app
 
+RUN mkdir volume-data && \
+    chown -R node:node /app
+
+USER node
 # Copy only the built application and necessary files from the build stage
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/package*.json ./
+COPY --chown=node:node --from=build /app/dist ./dist
+COPY --chown=node:node --from=build /app/package*.json ./
 
 # Install only production dependencies
 RUN npm install --only=production --omit=dev
-
-# Add a non-root user and switch to it
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-USER appuser
 
 # Expose the application port
 EXPOSE 3000

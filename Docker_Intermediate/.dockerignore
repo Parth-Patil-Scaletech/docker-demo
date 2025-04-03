@@ -11,3 +11,5 @@ Dockerfile
 Readme.md
 
 docker-compose.yml
+
+.gitkeep
