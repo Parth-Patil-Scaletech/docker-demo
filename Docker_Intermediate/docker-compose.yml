@@ -1,7 +1,23 @@
-  # Deprecated (Can skip with newest version)
+# Deprecated (Can skip with newest version)
   # version: '3.8'
 
   services:
+    frontend:
+      build:
+        context: ./frontend
+        dockerfile: Dockerfile
+        target: runner
+      image: demo_frontend
+      container_name: demo_frontend
+      ports:
+        - "3001:3000"
+      environment:
+        - NEXT_PUBLIC_API_URL=http://localhost:3000 # Backend host URL
+      depends_on:
+        - backend
+      networks:
+        - demo_net
+
     backend: # Service name
       # Build the Dockerfile in the current directory
       build:
